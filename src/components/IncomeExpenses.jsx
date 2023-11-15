@@ -3,16 +3,7 @@ import React from "react";
 import { TransactionsContext } from "../contexts/TransactionsProvider";
 
 const IncomeExpenses = () => {
-  const { expenses, calculateExpenses, income, calculateIncome } =
-    React.useContext(TransactionsContext);
-
-  React.useEffect(() => {
-    calculateExpenses();
-  }, [expenses, calculateExpenses]);
-
-  React.useEffect(() => {
-    calculateIncome();
-  }, [income, calculateIncome]);
+  const { expenses, income } = React.useContext(TransactionsContext);
 
   return (
     <div className="inc-exp-container">

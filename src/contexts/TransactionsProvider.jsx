@@ -14,37 +14,25 @@ const TransactionsProvider = ({ children }) => {
   }, [transactions]);
 
   // calculate expenses
-  const [expenses, setExpenses] = React.useState(0);
-  const calculateExpenses = () => {
-    const totalExpenses = transactions
-      .filter(
-        (singleTransaction) => singleTransaction.transactionType === "expense"
-      )
-      .reduce((acc, singleTransaction) => {
-        return acc + singleTransaction.amount;
-      }, 0);
-    setExpenses(totalExpenses);
-  };
+  const expenses = transactions
+    .filter(
+      (singleTransaction) => singleTransaction.transactionType === "expense"
+    )
+    .reduce((acc, singleTransaction) => {
+      return acc + singleTransaction.amount;
+    }, 0);
 
-  // calculate income
-  const [income, setIncome] = React.useState(0);
-  const calculateIncome = () => {
-    const totalIncome = transactions
-      .filter(
-        (singleTransaction) => singleTransaction.transactionType === "income"
-      )
-      .reduce((acc, singleTransaction) => {
-        return acc + singleTransaction.amount;
-      }, 0);
-    setIncome(totalIncome);
-  };
+  // calculate total income
+  const income = transactions
+    .filter(
+      (singleTransaction) => singleTransaction.transactionType === "income"
+    )
+    .reduce((acc, singleTransaction) => {
+      return acc + singleTransaction.amount;
+    }, 0);
 
   //  Calculate total balance
-  const [balance, setBalance] = React.useState(0);
-  const calculateBalance = () => {
-    const totalBalance = income - expenses;
-    setBalance(totalBalance);
-  };
+  const balance = income - expenses;
 
   // add to the transactions list
   const addTransaction = (transaction) => {
@@ -64,11 +52,8 @@ const TransactionsProvider = ({ children }) => {
       value={{
         transactions,
         expenses,
-        calculateExpenses,
         income,
-        calculateIncome,
         balance,
-        calculateBalance,
         addTransaction,
         removeTransaction,
       }}

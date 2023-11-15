@@ -27,6 +27,8 @@ const AddTransaction = () => {
     };
 
     addTransaction(newTransaction);
+    setText("");
+    setAmount("");
 
     if (newTransaction.transactionType === "income") {
       incomeNotify();
